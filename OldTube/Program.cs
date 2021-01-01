@@ -22,7 +22,7 @@ namespace OldTube
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://*:80");
+                    webBuilder.UseUrls("http://*:5001");
                 });
     }
 }
