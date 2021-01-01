@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - OldTube</title>
+</head>
+<body>
+    <table align="center" width="640">
+        <tr>
+            <td>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <tr valign="top">
+                            <td width="130" rowspan="2"><a href="/"><img src="/img/logo.gif" width="120" height="48" alt="YouTube" border="0"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 10px;">
+                    <tbody>
+                        <tr>
+                            <form name="searchForm" id="searchForm" method="GET" action="/results">
+                                <td width="300"><input size="38" tabindex="1" type="text" value="" name="search" maxlength="128"></td>
+                                <td>
+                                    <input type="submit" name="search_videos" value="Search Videos">
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    @RenderBody()
+                </table>
+            </td>
+        </tr>
+    </table>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

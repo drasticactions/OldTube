@@ -1,0 +1,60 @@
+﻿@page "{id}";
+@model OldTube.Pages.VideoModel
+@{
+    ViewData["Title"] = Model.Video.Title;
+}
+
+<table width="520" align="center" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+        <tr valign="top">
+            <td width="320">
+                <table>
+                    <tbody>
+                        <tr>
+                            <h3>@Model.Video.Title</h3>
+                            <object ID="MediaPlayer" height="310" width="320" CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
+                                <param name="URL" value="http://@this.Request.Host.Value/videocontent/@Model.Video.Id">
+                                <param Name="autoStart" Value="true">
+                                <param Name="uiMode" Value="full">
+                            </object>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font face="verdana, arial, helvetica" size="-1">
+                                    <dl>
+                                        <dt><b>Creator:</b> <a href="/profile/@Model.Video.ChannelId">@Model.Video.Author</a></dt>
+                                        <dt><b>Duration:</b> @Model.Video.Duration</dt>
+                                        
+                                        <dt><font face="verdana, arial, helvetica" size="-2">
+                                            @Model.Video.Engagement
+                                        </font></dt>
+                                    </dl>
+                                </font>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td width="200">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <br />
+                                <br />
+                                <br />
+                                <p>
+                                    <font face="verdana, arial, helvetica" size="2">
+                                        @Model.Video.Description
+                                    </font>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tbody>
+</table>

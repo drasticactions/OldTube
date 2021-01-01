@@ -1,0 +1,96 @@
+﻿@page
+@model OldTube.Pages.ResultsModel
+@{
+    ViewData["Title"] = "Search Results";
+    int nextPage = Model.CurrentPage + 1;
+    int previousPage = Model.CurrentPage - 1;
+    var testGroup = Model.Videos?.Select((video, index) => new { video, index }).GroupBy(g => g.index / 4, i => i.video);
+}
+
+<table width="100%" align="center" cellpadding="5" cellspacing="0" border="0">
+    <tbody>
+        <tr valign="top">
+            <td>
+                @if (Model.IsEmpty == false)
+                {
+                    <table width="100%" align="center" cellpadding="10" cellspacing="0" border="0" bgcolor="#CCCCCC">
+                        <tbody>
+                            <tr valign="center">
+                                @if (previousPage >= 1)
+                                {
+                                    <td width="50%" align="left" valign="middle">
+                                        <form name="searchForm" id="searchForm" method="GET" action="/results">
+                                            <input type="hidden" name="p" value="@previousPage">
+                                            <input type="hidden" name="search" value="@Model.SearchString">
+                                            <input type="submit" name="previous_page" value="Previous Page">
+                                        </form>
+                                    </td>
+                                }
+                                <td width="50%" colspan="4" align="right" valign="middle">
+                                    <form name="searchForm" id="searchForm" method="GET" action="/results">
+                                        <input type="hidden" name="p" value="@nextPage">
+                                        <input type="hidden" name="search" value="@Model.SearchString">
+                                        <input type="submit" name="next_page" value="Next Page">
+                                    </form>
+                                </td>
+                            </tr>
+                            @foreach (var group in testGroup)
+                            {
+                                <tr valign="top">
+                                    @foreach (var video in group)
+                                    {
+                                        <td width="20%">
+                                            <a href="/video/@video.Id">
+                                                <img src="/proxy?file=@video.Thumbnails.LowResUrl"
+                                                     width="120" height="90">
+                                            </a>
+                                            <font align="center" face="verdana, arial, helvetica" size="-1">
+                                                <div>
+                                                    <a href="/video/@video.Id">
+                                                        @video.Title
+                                                    </a>
+                                                </div>
+                                            </font>
+                                            <font face="verdana, arial, helvetica" size="-2">
+                                                <div>
+                                                    Added: @video.UploadDate.ToString("dd-MM-yyyy"),
+                                                    <br> by <a href="/profile/@video.ChannelId">@video.Author</a>
+                                                </div>
+                                                <div>
+                                                    @video.Engagement.ToString()
+                                                </div>
+                                            </font>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                            <tr valign="center">
+                                @if (previousPage >= 1)
+                                {
+                                    <td width="50%" align="left" valign="middle">
+                                        <form name="searchForm" id="searchForm" method="GET" action="/results">
+                                            <input type="hidden" name="p" value="@previousPage">
+                                            <input type="hidden" name="search" value="@Model.SearchString">
+                                            <input type="submit" name="previous_page" value="Previous Page">
+                                        </form>
+                                    </td>
+                                }
+                                <td width="50%" colspan="4" align="right" valign="middle">
+                                    <form name="searchForm" id="searchForm" method="GET" action="/results">
+                                        <input type="hidden" name="p" value="@nextPage">
+                                        <input type="hidden" name="search" value="@Model.SearchString">
+                                        <input type="submit" name="next_page" value="Next Page">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h2>No Results Found!</h2>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

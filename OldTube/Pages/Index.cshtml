@@ -1,0 +1,49 @@
+﻿@page
+
+@model IndexModel
+@{
+    Layout = "";
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - OldTube</title>
+</head>
+<body>
+    <table align="center" height="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="80%" align="center" valign="center" cellpadding="3" cellspacing="0" border="0">
+                        <tbody align="center">
+                            <tr align="center">
+                                <td align="center">
+                                    <img src="~/img/logo.gif" width="180" height="71" hspace="12" vspace="12" alt="YouTube">
+                                    <br>
+                                    Your Digital Video Repository
+                                    <br>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            <form name="f" method="GET" action="/results">
+                                <tr align="center">
+                                    <td width="300"><input size="38" tabindex="1" type="text" value="" name="search" maxlength="128"></td>
+                                </tr>
+                                <tr align="center">
+                                    <td>
+                                        <input type="submit" name="search_videos" value="Search Videos">
+                                    </td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
